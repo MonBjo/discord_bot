@@ -21,6 +21,7 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
+client.on('debug', console.log)
 
 // Commands
 client.on('interactionCreate', async interaction => {
