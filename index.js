@@ -18,13 +18,13 @@ for (const file of commandFiles) {
 
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
-	console.log('yeet');
+	console.log('Ready!');
 });
 
 
 // Commands
 client.on('interactionCreate', async interaction => {
-    console.log("yaaaoooo");
+    console.log("is this a command?");
 	if (!interaction.isCommand()) return;
 
 	const command = client.commands.get(interaction.commandName);
