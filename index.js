@@ -1,11 +1,25 @@
-// Require the necessary discord.js classes
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 
-// Create a new client instance
+
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
+
+// Read event-files
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
+
+
+// Read command-files
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -16,23 +30,16 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-// When the client is ready, run this code (only once)
-client.once('ready', () => {
-    console.log('Ready!');
-});
 
-//client.on('debug', console.log);
-
-
+// Handels command
 client.on('interactionCreate', async interaction => {
-    if (!interaction.isCommand()) return;
-    
+	if (!interaction.isCommand()) return;
 	const command = client.commands.get(interaction.commandName);
     
 	if (!command) return;
     
 	try {
-        await command.execute(interaction);
+		await command.execute(interaction);
         console.log('Command executed: ', interaction.commandName );
 	} catch (error) {
 		console.error(error);
@@ -41,5 +48,14 @@ client.on('interactionCreate', async interaction => {
 });
 
 
-// Login to Discord with your client's token
+// Logs in to Discord
 client.login(token);
+
+// DEBUG INFO
+
+//client.on('debug', console.log);
+
+//client.once('ready', () => {
+//	console.log('Ready!');
+//});
+	
