@@ -2,9 +2,9 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('user-info')
+		.setName('userinfo')
 		.setDescription('Display info about yourself.'),
 	async execute(interaction) {
-		return interaction.reply(`Your username: ${interaction.user.username}\nYour ID: ${interaction.user.id}\nOn discord since: ${interaction.user.createdAt}`);
+		return interaction.reply(`Username: ${interaction.user.username}\nID: ${interaction.user.id}\nMember since: ${interaction.user.joinedAt}`);
 	},
 };
