@@ -2,41 +2,25 @@ const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 
+const client = new Client({ intents: [
+	Intents.FLAGS.GUILDS,
+	Intents.FLAGS.GUILD_MESSAGES] });
+// Stahp plz
+	
+// client.on('debug', console.log);
+// const auditlogChannel = client.channels.cache.get('911274099286876220');
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-
-
-const auditlogChannel = { key:null };
-
-client.login(token);
 
 client.once('ready', () => {
 	console.log('Ready!');
 	client.user.setActivity('villagers', { type: 'WATCHING' });
 
-	auditlogChannel.key = client.channels.cache.get('911274099286876220');
 	// console.log(auditlogChannel.key);
-	auditlogChannel.key.send('hi');
+	// auditlogChannel.key.send('hi');
 });
 
 
-client.on('debug', console.log);
-
-
-// Read event-files
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
-
-for (const file of eventFiles) {
-	const event = require(`./events/${file}`);
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
-	} else {
-		client.on(event.name, (...args) => event.execute(...args));
-	}
-}
-
-
-// Read command-files
+// Read and execute command-files
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -47,25 +31,34 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-
-// Executes commands
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 	const command = client.commands.get(interaction.commandName);
-
+	
 	if (!command) return;
-
+	
 	try {
 		await command.execute(interaction);
-		console.log('Command executed: ', interaction.commandName);
 	} catch (error) {
 		console.error(error);
 		return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
 
-// Audit logs
 
-client.on('messageDelete', message => {
-	console.log(`A message by ${message.author.tag} was deleted, but we don't know by who yet.`);
-});
+// Read and execute event-files
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+
+for (const file of eventFiles) {
+	const event = require(`./events/${file}`);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+		console.log('LOG: ', event.name);
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+		console.log('LOG: ', event.name);
+	}
+}
+
+
+client.login(token);
