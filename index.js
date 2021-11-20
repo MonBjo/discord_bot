@@ -2,9 +2,9 @@ const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
 
-const client = new Client({ intents: [
-	Intents.FLAGS.GUILDS,
-	Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ 
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES], 
+	partials: ['CHANNELS', 'MESSAGE', 'REACTION'] });
 // Stahp plz
 	
 // client.on('debug', console.log);
@@ -26,8 +26,6 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-	// Set a new item in the Collection
-	// With the key as the command name and the value as the exported module
 	client.commands.set(command.data.name, command);
 }
 
@@ -53,10 +51,10 @@ for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args));
-		console.log('LOG: ', event.name);
+		console.log('Executed once only: ', event.name);
 	} else {
 		client.on(event.name, (...args) => event.execute(...args));
-		console.log('LOG: ', event.name);
+		console.log('2Executed event: ', event.name);
 	}
 }
 
