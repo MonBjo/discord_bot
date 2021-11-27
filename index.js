@@ -4,7 +4,7 @@ const { token } = require('./config.json');
 
 const client = new Client({ 
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS], 
-	partials: ['USER', 'CHANNELS', 'MESSAGE', 'REACTION'] });
+	partials: ['USER', 'CHANNELS', 'MESSAGE', 'REACTION', 'GUILD_MEMBER', 'USER'] });
 // Stahp plz
 	
 // client.on('debug', console.log);
