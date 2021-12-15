@@ -11,7 +11,7 @@ module.exports = {
         console.log('fetched audit logs');
  
         const deletionLog = fetchedLogs.entries.first();
-        console.log('collect first entry of messageDelete: ', deletionLog);
+        console.log('collect first entry of messageDelete');
 
         if (!deletionLog) return console.log(`A message was deleted by ${deletionLog.author.tag}, but no relevant audit logs were found.`);
         

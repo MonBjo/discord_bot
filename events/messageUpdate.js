@@ -14,21 +14,21 @@ module.exports = {
         console.log('collect first entry of messageUpdate');
 
         if (!logEntry) return console.log(`A message was edited by ${logEntry.author.tag}, but no relevant audit logs were found.`);
-        
+ 
+        try {
+        const auditlogChannel = '911274099286876220';
+        auditlogChannel.key.send(`A message was edited by ${logEntry.executor.tag}.`);
+        } catch (error) {
+            console.log('ERROR: ', error);
+        }
 
         if (logEntry) { 
             try {
-                console.log(`logEntry.target.tag: ${logEntry.target.tag}`);
-                console.log(`message.author: ${message.author}`);
-
-                console.log(`logEntry.executor.tag: ${logEntry.executor.tag}`);
-                console.log(`message.executor: ${message.executor}`);
-
-                console.log(`message.createdAt: ${message.createdAt}`);
+                console.log(`A message was edited by ${logEntry.executor.tag}.`);
+                console.log(`The message was first sent at: ${message.createdAt}`);
             } catch (error) {
                 console.log('ERROR: ', error);
             }
         }
-
 	},
 };

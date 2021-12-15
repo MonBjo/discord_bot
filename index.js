@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
+/* const { AuditLogEvent } = require('discord-api-types'); */
 
 const client = new Client({ 
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS], 
@@ -18,7 +19,6 @@ client.once('ready', () => {
 	// console.log(auditlogChannel.key);
 	// auditlogChannel.key.send('hi');
 });
-
 
 // Read and execute command-files
 client.commands = new Collection();
@@ -43,7 +43,6 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
-
 // Read and execute event-files
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
@@ -55,6 +54,5 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.execute(...args));
 	}
 }
-
 
 client.login(token);
