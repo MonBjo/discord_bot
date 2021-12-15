@@ -1,27 +1,27 @@
 module.exports = {
-	name: 'messageDelete',
+	name: 'messageUpdate',
 	async execute(message) {
         if (!message.guild) return;
         console.log('ignored direct messages');
 
         const fetchedLogs = await message.guild.fetchAuditLogs({
             limit: 1,
-            type: 'MESSAGE_DELETE',
+            type: 'MESSAGE_UPDATE',
         });
         console.log('fetched audit logs');
  
-        const deletionLog = fetchedLogs.entries.first();
-        console.log('collect first entry of messageDelete: ', deletionLog);
+        const logEntry = fetchedLogs.entries.first();
+        console.log('collect first entry of messageUpdate');
 
-        if (!deletionLog) return console.log(`A message was deleted by ${deletionLog.author.tag}, but no relevant audit logs were found.`);
+        if (!logEntry) return console.log(`A message was edited by ${logEntry.author.tag}, but no relevant audit logs were found.`);
         
 
-        if (deletionLog) { 
+        if (logEntry) { 
             try {
-                console.log(`deletionlog.target.tag: ${deletionLog.target.tag}`);
+                console.log(`logEntry.target.tag: ${logEntry.target.tag}`);
                 console.log(`message.author: ${message.author}`);
 
-                console.log(`deletionLog.executor.tag: ${deletionLog.executor.tag}`);
+                console.log(`logEntry.executor.tag: ${logEntry.executor.tag}`);
                 console.log(`message.executor: ${message.executor}`);
 
                 console.log(`message.createdAt: ${message.createdAt}`);
