@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'messageUpdate',
-	async execute(message) {
+	async execute(message, auditlogChannel, client, GetAuditlogChannel) {
         if (!message.guild) return;
         console.log('ignored direct messages');
 
@@ -15,12 +15,13 @@ module.exports = {
 
         if (!logEntry) return console.log(`A message was edited by ${logEntry.author.tag}, but no relevant audit logs were found.`);
  
+
         try {
-        const auditlogChannel = '911274099286876220';
-        auditlogChannel.key.send(`A message was edited by ${logEntry.executor.tag}.`);
+            GetAuditlogChannel.send(`A message was edited by ${logEntry.executor.tag}.`);
         } catch (error) {
             console.log('ERROR: ', error);
         }
+
 
         if (logEntry) { 
             try {

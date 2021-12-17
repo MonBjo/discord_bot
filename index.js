@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
+/* const { channel } = require('diagnostics_channel'); */
 /* const { AuditLogEvent } = require('discord-api-types'); */
 
 const client = new Client({ 
@@ -9,15 +10,18 @@ const client = new Client({
 // Stahp plz
 	
 // client.on('debug', console.log);
-// const auditlogChannel = client.channels.cache.get('911274099286876220');
+function GetAuditlogChannel() {
+	return client.channels.cache.get('911274099286876220');
+}
 
 
 client.once('ready', () => {
 	console.log('Ready!');
 	client.user.setActivity('villagers', { type: 'WATCHING' });
 
-	// console.log(auditlogChannel.key);
-	// auditlogChannel.key.send('hi');
+/*	const channelTest = client.channels.cache.get('911274099286876220');
+	console.log('auditlogChannel: ', auditlogChannel);
+	console.log('channelTest: ', channelTest);*/
 });
 
 // Read and execute command-files
@@ -49,9 +53,9 @@ const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
+		client.once(event.name, (...args) => event.execute(...args, GetAuditlogChannel, client));
 	} else {
-		client.on(event.name, (...args) => event.execute(...args));
+		client.on(event.name, (...args) => event.execute(...args, GetAuditlogChannel, client));
 	}
 }
 
