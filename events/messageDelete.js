@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'messageDelete',
-	async execute(message) {
+	async execute(message, GetAuditlogChannel) {
         if (!message.guild) return;
         console.log('ignored direct messages');
 
@@ -12,6 +12,7 @@ module.exports = {
  
         const deletionLog = fetchedLogs.entries.first();
         console.log('collect first entry of messageDelete');
+		GetAuditlogChannel().send('I can write from messageDelete.js');
 
         if (!deletionLog) return console.log(`A message was deleted by ${deletionLog.author.tag}, but no relevant audit logs were found.`);
         

@@ -1,28 +1,25 @@
 module.exports = {
 	name: 'messageUpdate',
-	async execute(message, auditlogChannel, client, GetAuditlogChannel) {
+	async execute(message, GetAuditlogChannel) {
         if (!message.guild) return;
         console.log('ignored direct messages');
-
+        
         const fetchedLogs = await message.guild.fetchAuditLogs({
             limit: 1,
             type: 'MESSAGE_UPDATE',
         });
         console.log('fetched audit logs');
- 
+        
         const logEntry = fetchedLogs.entries.first();
         console.log('collect first entry of messageUpdate');
+        GetAuditlogChannel().send('Can I write from messageUpdate.js ?');
+        
+        console.log(`A message was deleted by ${logEntry.author.tag}, but no relevant audit logs were found.`);
 
+        // Debug info
+        // console.log('AUDITLOG ENTRY: ', logEntry);
 
-//          Debug info
-        console.log(logEntry);
-        try {
-            GetAuditlogChannel.send(`A message was edited by ${logEntry.executor.tag}.`);
-        } catch (error) {
-            console.log('ERROR: ', error);
-        }
-
-        /*
+        /*       
         if (!logEntry) {
             try {
                 GetAuditlogChannel().send(`A message was edited by ${logEntry.executor.tag}, but no auditlogs were found.`);
