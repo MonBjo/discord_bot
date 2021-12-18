@@ -1,17 +1,22 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
-/* const { channel } = require('diagnostics_channel'); */
-/* const { AuditLogEvent } = require('discord-api-types'); */
+// const { channel } = require('diagnostics_channel');
+// const { AuditLogEvent } = require('discord-api-types');
 
 const client = new Client({ 
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS], 
 	partials: ['USER', 'CHANNELS', 'MESSAGE', 'REACTION', 'GUILD_MEMBER', 'USER'], 
 });
-	
+
 
 function GetAuditlogChannel() {
 	return client.channels.cache.get('911274099286876220');
+}
+
+function fetchedMessage(channelSnowflake, messageSnowflake) {
+	const fetchedMsg = channelSnowflake.messages.fetch(messageSnowflake);
+	return fetchedMsg.author;
 }
 
 /* client.on('debug', console.log);
@@ -52,7 +57,7 @@ for (const file of eventFiles) {
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(GetAuditlogChannel, ...args));
 	} else {
-		client.on(event.name, (...args) => event.execute(GetAuditlogChannel, ...args));
+		client.on(event.name, (...args) => event.execute(GetAuditlogChannel, fetchedMessage, ...args));
 	}
 }
 

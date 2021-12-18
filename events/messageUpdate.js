@@ -1,9 +1,8 @@
 module.exports = {
 	name: 'messageUpdate',
-	async execute(GetAuditlogChannel, message) {
-        console.log('----- MESSAGE UPDATE -----');
+	async execute(GetAuditlogChannel, fetchedMessage, message) {
         if (!message.guild) return;
-        console.log('ignored direct messages');
+        if (message.deleted) return;
         
         const fetchedLogs = await message.guild.fetchAuditLogs({
             limit: 1,
@@ -13,15 +12,20 @@ module.exports = {
         
         const logEntry = fetchedLogs.entries.first();
         console.log('collect first entry of messageUpdate');
-        try {
-            GetAuditlogChannel().send('Can I write from messageUpdate.js ?');
-        }
-        catch (error) {
-            console.log('ERROR: ', error);
-        }
 
-        // Debug info
-        // console.log('AUDITLOG ENTRY: ', logEntry);
+        GetAuditlogChannel().send('I can write from messageUpdate.js');
+        
+        function CalculateTime(unixTime) {
+            return (unixTime / 1000).toFixed(0);
+        }
+        
+        try {
+            GetAuditlogChannel().send(
+                `logEntry.executor.id: <@${logEntry.executor.id}> \nlogEntry.extra.channel.id: <#${logEntry.extra.channel.id}> \nmessage.createdTimestamp: <t:${CalculateTime(message.createdTimestamp)}>`);
+            }
+            catch (error) {
+                console.log('ERROR: ', error);
+            }
 
         /*       
         if (!logEntry) {
@@ -43,5 +47,22 @@ module.exports = {
                 console.log('ERROR: ', error);
             }
         } */
+
+
+        // Debug info
+        // console.log('--- logEntry ---\n', logEntry);
+        // console.log('--- message ---\n', message);
+        console.log('message.id: ', message.id);
+        console.log('message.channelId', message.channelId);
+        
+        const messageSnowflake = message.id; 
+        const channelSnowflake = message.channelId;
+        
+        try {
+            console.log(fetchedMessage(channelSnowflake, messageSnowflake));
+        }
+        catch (error) {
+            console.log('ERROR: ', error);
+        }
 	},
 };
