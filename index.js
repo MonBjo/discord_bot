@@ -7,9 +7,9 @@ const { token } = require('./config.json');
 const client = new Client({ 
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS], 
 	partials: ['USER', 'CHANNELS', 'MESSAGE', 'REACTION', 'GUILD_MEMBER', 'USER'] });
-// Stop plz
-
-
+// Stahp plz
+	
+// client.on('debug', console.log);
 function GetAuditlogChannel() {
 	return client.channels.cache.get('911274099286876220');
 }
@@ -17,6 +17,10 @@ function GetAuditlogChannel() {
 client.once('ready', () => {
 	console.log('Ready!');
 	client.user.setActivity('villagers', { type: 'WATCHING' });
+
+/*	const channelTest = client.channels.cache.get('911274099286876220');
+	console.log('auditlogChannel: ', auditlogChannel);
+	console.log('channelTest: ', channelTest);*/
 });
 
 // Read and execute command-files

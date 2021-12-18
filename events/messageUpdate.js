@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'messageUpdate',
-	async execute(message, GetAuditlogChannel) {
+	async execute(message, auditlogChannel, client, GetAuditlogChannel) {
         if (!message.guild) return;
         console.log('ignored direct messages');
 
@@ -17,12 +17,9 @@ module.exports = {
 //          Debug info
         console.log(logEntry);
         try {
-            // GetAuditlogChannel().send('test');
-            console.log('GetAuditlogChannel: ', GetAuditlogChannel);
-            console.log('GetAuditlogChannel(): ', GetAuditlogChannel());
-        } 
-        catch (error) { 
-            console.log('ERROR: ', error); 
+            GetAuditlogChannel.send(`A message was edited by ${logEntry.executor.tag}.`);
+        } catch (error) {
+            console.log('ERROR: ', error);
         }
 
         /*
