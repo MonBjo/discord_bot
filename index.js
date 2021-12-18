@@ -6,23 +6,17 @@ const { token } = require('./config.json');
 
 const client = new Client({ 
 	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS], 
-	partials: ['USER', 'CHANNELS', 'MESSAGE', 'REACTION', 'GUILD_MEMBER', 'USER'],
-});
-	
-// client.on('debug', console.log);
-const auditlogChannelSnowflake = '911274099286876220';
-function GetAuditlogChannel() {
-	return client.channels.cache.get(auditlogChannelSnowflake);
-}
+	partials: ['USER', 'CHANNELS', 'MESSAGE', 'REACTION', 'GUILD_MEMBER', 'USER'] });
+// Stop plz
 
+
+function GetAuditlogChannel() {
+	return client.channels.cache.get('911274099286876220');
+}
 
 client.once('ready', () => {
 	console.log('Ready!');
 	client.user.setActivity('villagers', { type: 'WATCHING' });
-
-	console.log(GetAuditlogChannel());
-	console.log(GetAuditlogChannel);
-	GetAuditlogChannel().send('test');
 });
 
 // Read and execute command-files
@@ -54,10 +48,11 @@ const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
 	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args, GetAuditlogChannel, client));
+		client.once(event.name, (...args) => event.execute(...args, GetAuditlogChannel));
 	} else {
-		client.on(event.name, (...args) => event.execute(...args, GetAuditlogChannel, client));
+		client.on(event.name, (...args) => event.execute(...args, GetAuditlogChannel));
 	}
 }
+
 
 client.login(token);

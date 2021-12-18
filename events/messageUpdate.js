@@ -13,23 +13,37 @@ module.exports = {
         const logEntry = fetchedLogs.entries.first();
         console.log('collect first entry of messageUpdate');
 
-        if (!logEntry) return console.log(`A message was edited by ${logEntry.author.tag}, but no relevant audit logs were found.`);
- 
 
+//          Debug info
+        console.log(logEntry);
         try {
-            GetAuditlogChannel().send(`A message was edited by ${logEntry.executor.tag}.`);
-        } catch (error) {
-            console.log('ERROR: ', error);
+            // GetAuditlogChannel().send('test');
+            console.log('GetAuditlogChannel: ', GetAuditlogChannel);
+            console.log('GetAuditlogChannel(): ', GetAuditlogChannel());
+        } 
+        catch (error) { 
+            console.log('ERROR: ', error); 
         }
 
-
-        if (logEntry) { 
+        /*
+        if (!logEntry) {
             try {
-                console.log(`A message was edited by ${logEntry.executor.tag}.`);
-                console.log(`The message was first sent at: ${message.createdAt}`);
-            } catch (error) {
+                GetAuditlogChannel().send(`A message was edited by ${logEntry.executor.tag}, but no auditlogs were found.`);
+            } 
+            catch (error) {
                 console.log('ERROR: ', error);
+            } 
+            finally {
+                GetAuditlogChannel().send('A message was edited, but no auditlogs were found.');
             }
         }
+        else {
+            try {
+                GetAuditlogChannel().send(`A message was edited by ${logEntry.executor.tag} in the channel *channelname*. \n The message can be found here: *link to message*`);
+            }
+            catch (error) {
+                console.log('ERROR: ', error);
+            }
+        } */
 	},
 };
