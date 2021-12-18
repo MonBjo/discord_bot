@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'messageUpdate',
-	async execute(message, GetAuditlogChannel) {
+	async execute(GetAuditlogChannel, message) {
         console.log('----- MESSAGE UPDATE -----');
         if (!message.guild) return;
         console.log('ignored direct messages');
@@ -14,7 +14,7 @@ module.exports = {
         const logEntry = fetchedLogs.entries.first();
         console.log('collect first entry of messageUpdate');
         try {
-        GetAuditlogChannel().send('Can I write from messageUpdate.js ?');
+            GetAuditlogChannel().send('Can I write from messageUpdate.js ?');
         }
         catch (error) {
             console.log('ERROR: ', error);

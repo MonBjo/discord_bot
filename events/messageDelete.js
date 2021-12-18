@@ -1,6 +1,6 @@
 module.exports = {
-	name: 'messageDelete',
-	async execute(message, GetAuditlogChannel) {
+	name: 'messageDelete', 
+    async execute(GetAuditlogChannel, message) {
         console.log('----- MESSAGE DELETE -----');
         if (!message.guild) return;
         console.log('ignored direct messages');
