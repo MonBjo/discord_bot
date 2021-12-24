@@ -21,6 +21,7 @@ Since we will start learning JavaScript after new year, I will note what I learn
 - [ ] Reaction / command roles for members to assign to themself
     - [ ] Prononuns
     - [ ] Open to DMs / Ask before DMs / No DMs
+    - [ ] Languages they speak
 
 ### Things I've learned so far in school and how I apply it in my code
 
