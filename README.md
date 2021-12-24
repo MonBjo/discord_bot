@@ -4,7 +4,7 @@
 
 It's around christmas 2021 and I came up with a genious idea about this bot project. 
 
-Since we will start learning JavaScript next year after new year, I will note what I learn in school and apply it here. It can be an intersting experience. Because, after a month on this bot I honestly do not know what I am doing. It is mostly trial and error in the dark and copy paste. 🙈
+Since we will start learning JavaScript after new year, I will note what I learn in school and apply it here. It can be an intersting experience. Because, after a month on this bot I honestly do not know what I am doing. It is mostly trial and error in the dark and copy paste. 🙈
 
 
 ### My goals with this discord bot
