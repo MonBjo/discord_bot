@@ -9,15 +9,15 @@ Since we will start learning JavaScript after new year, I will note what I learn
 
 ### My goals with this discord bot
 
-- [x] Be able to delete several messages in a channel.
-- [x] Be able to get information about a user. 
-- [x] Be able to see a users avatar. 
+- [x] Be able to delete several messages in a channel. (it was an example function, so purely copy paste)
+- [x] Be able to get some information about a user. (it was an example function, so purely copy paste)
+- [x] Be able to see a users avatar. (it was an example function, so purely copy paste)
 - [ ] Handle audit logs
     - [x] Deleted messages
     - [ ] Updated messages
     - [ ] A user leaves the server
 - [ ] Some small game maybe?
-- [ ] Search the minecraft wiki (maybe it would be possible to search the wiki from the game?)
+- [ ] Search the minecraft wiki (maybe it would be possible to search the wiki from the game?) 
 - [ ] Reaction / command roles for members to assign to themself
     - [ ] Prononuns
     - [ ] Open to DMs / Ask before DMs / No DMs
