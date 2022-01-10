@@ -28,3 +28,5 @@ Since we will start learning JavaScript after new year, I will note what I learn
 ### 10 jan 
 
 Wheee, we have finally started!
+
+So, apparently JavaScript was created the same year as I was, 1995.
