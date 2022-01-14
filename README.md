@@ -28,7 +28,7 @@ Since we will start learning JavaScript after new year, I will note what I learn
 ### Week 1 
 *January 10*
 
-This week we have talked some basics, some of the things we talked about was different ways of creating functions. Regular `functions()` i have used before so that's no problem, but function expression, anonymous functions and arrow functions are new to me.
+This week we have talked some basics, some of the things we talked about was different ways of creating functions. I have used regular `functions()` before so that's no problem, but function expression, anonymous functions and arrow functions are new to me.
 
 I am beginning to understand the "base code" in this project much better as they've used these other types of functions.. This is exiting!
 
