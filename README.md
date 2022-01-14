@@ -25,7 +25,8 @@ Since we will start learning JavaScript after new year, I will note what I learn
 
 ## Things I've learned so far in school and how I apply it in my code
 
-### Week 2
+### Week 1 
+*January 10*
 
 This week we have talked some basics, some of the things we talked about was different ways of creating functions. Regular `functions()` i have used before so that's no problem, but function expression, anonymous functions and arrow functions are new to me.
 
