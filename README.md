@@ -33,3 +33,11 @@ This week we have talked some basics, some of the things we talked about was dif
 I am beginning to understand the "base code" in this project much better as they've used these other types of functions.. This is exiting!
 
 *Also, apparently Javascript was created the same year as I was, 1995.*
+
+### Week 2
+
+There was some anonyumous one-liner arrow functions and they're really hard for me to read, especally with only one argument. So I tweaked them to be on multiple lines. 
+
+I do understand that the one-liners are useful and probably easy to read for skilled devs. I'll get there soon!
+
+Other than that we have done some basics like object and arrays and those aren't really relevant for now.
