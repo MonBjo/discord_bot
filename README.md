@@ -28,16 +28,24 @@ Since we will start learning JavaScript after new year, I will note what I learn
 ### Week 1 
 *January 10*
 
-This week we have talked some basics, some of the things we talked about was different ways of creating functions. I have used regular `functions()` before so that's no problem, but function expression, anonymous functions and arrow functions are new to me.
+Some of the things we talked about was different ways of creating functions. I have used regular `functions()` before so that's no problem, but function expression, anonymous functions and arrow functions are new to me.
 
 I am beginning to understand the "base code" in this project much better as they've used these other types of functions.. This is exiting!
 
 *Also, apparently Javascript was created the same year as I was, 1995.*
 
 ### Week 2
+*January 17*
 
 There was some anonyumous one-liner arrow functions and they're really hard for me to read, especally with only one argument. So I tweaked them to be on multiple lines. 
 
 I do understand that the one-liners are useful and probably easy to read for skilled devs. I'll get there soon!
 
 Other than that we have done some basics like object and arrays and those aren't really relevant for now.
+
+### Week 3
+*January 24*
+
+We have so far learnt about different functions, variables, ways to work with arrays, loops, objects and DOM-three, some basic stuff I guess. 
+I've been slightly familiar with most of the things, but I've learned many new ways to do them. I feel like my previous code could almost have been written in the stone age, haha.
+

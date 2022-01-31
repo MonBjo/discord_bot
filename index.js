@@ -9,7 +9,6 @@ const client = new Client({
 	partials: ['USER', 'CHANNELS', 'MESSAGE', 'REACTION', 'GUILD_MEMBER', 'USER'], 
 });
 
-
 function GetAuditlogChannel() {
 	return client.channels.cache.get('911274099286876220');
 }
@@ -28,9 +27,7 @@ client.once('ready', () => {
 
 // Read and execute command-files
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => { 
-	file.endsWith('.js');
-});
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
@@ -52,9 +49,7 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Read and execute event-files
-const eventFiles = fs.readdirSync('./events').filter(file => {
-	file.endsWith('.js');
-});
+const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
