@@ -49,3 +49,6 @@ Other than that we have done some basics like object and arrays and those aren't
 We have so far learnt about different functions, variables, ways to work with arrays, loops, objects and DOM-three, some basic stuff I guess. 
 I've been slightly familiar with most of the things, but I've learned many new ways to do them. I feel like my previous code could almost have been written in the stone age, haha.
 
+### Week 4
+*January 31*
+

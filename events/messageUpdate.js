@@ -13,7 +13,6 @@ module.exports = {
         const logEntry = fetchedLogs.entries.first();
         console.log('collect first entry of messageUpdate');
 
-        GetAuditlogChannel().send('I can write from messageUpdate.js');
         
         function CalculateTime(unixTime) {
             return (unixTime / 1000).toFixed(0);
@@ -21,7 +20,7 @@ module.exports = {
         
         try {
             GetAuditlogChannel().send(
-                `logEntry.executor.id: <@${logEntry.executor.id}> \nlogEntry.extra.channel.id: <#${logEntry.extra.channel.id}> \nmessage.createdTimestamp: <t:${CalculateTime(message.createdTimestamp)}>`);
+                `**A message was edited** \n<@${logEntry.executor.id}> edited a message in <#${logEntry.extra.channel.id}> that was sent at <t:${CalculateTime(message.createdTimestamp)}>`);
             }
             catch (error) {
                 console.log('ERROR: ', error);

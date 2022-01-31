@@ -1,6 +1,7 @@
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token } = require('./config.json');
+const { timeStamp } = require('console');
 // const { channel } = require('diagnostics_channel');
 // const { AuditLogEvent } = require('discord-api-types');
 
@@ -64,5 +65,18 @@ for (const file of eventFiles) {
 	}
 }
 
+// heartbeat every 5 minutes
+setInterval(function() {
+	console.log(`${logTime()} heartbeat`);	
+}, (1000 * 60 * 5));
+
+function logTime() {
+	const time = new Date();
+	const hours = (time.getHours() < 10 ? '0' : '') + time.getHours();
+	const minutes = (time.getMinutes() < 10 ? '0' : '') + time.getMinutes();
+	const seconds = (time.getSeconds() < 10 ? '0' : '') + time.getSeconds();
+	
+	return `${hours}:${minutes}:${seconds}`;
+}
 
 client.login(token);
