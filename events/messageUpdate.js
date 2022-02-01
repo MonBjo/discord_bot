@@ -12,47 +12,36 @@ module.exports = {
         
         const logEntry = fetchedLogs.entries.first();
         console.log('collect first entry of messageUpdate');
+        
 
+        if (!logEntry) {
+            try {
+                GetAuditlogChannel().send(`A message was edited by ${logEntry.executor.id} but no auditlogs were found.`);
+            } 
+            catch (error) {
+                console.log('ERROR: ', error);
+            }
+        }
+        else {
+            try {
+                GetAuditlogChannel().send(`${logEntry.executor.id} edited a message in <#${logEntry.extra.channel.id}> that was sent at <t:${CalculateTime(message.createdTimestamp)}>`);
+            }
+            catch (error) {
+                console.log('ERROR: ', error);
+            }
+        } 
         
         function CalculateTime(unixTime) {
             return (unixTime / 1000).toFixed(0);
         }
         
-        try {
-            GetAuditlogChannel().send(
-                `**A message was edited** \n<@${logEntry.executor.id}> edited a message in <#${logEntry.extra.channel.id}> that was sent at <t:${CalculateTime(message.createdTimestamp)}>`);
-            }
-            catch (error) {
-                console.log('ERROR: ', error);
-            }
 
-        /*       
-        if (!logEntry) {
-            try {
-                GetAuditlogChannel().send(`A message was edited, but no auditlogs were found.`);
-            } 
-            catch (error) {
-                console.log('ERROR: ', error);
-            } 
-            finally {
-                GetAuditlogChannel().send('A message was edited, but no auditlogs were found.');
-            }
-        }
-        else {
-            try {
-                GetAuditlogChannel().send(`A message was edited by ${logEntry.executor.tag} in the channel *channelname*. \n The message can be found here: *link to message*`);
-            }
-            catch (error) {
-                console.log('ERROR: ', error);
-            }
-        } */
-
-
-        // Debug info
-        // console.log('--- logEntry ---\n', logEntry);
-        // console.log('--- message ---\n', message);
+        // TODO: Get the old message
+        /*
+        console.log('--- logEntry ---\n', logEntry);
+        console.log('--- message ---\n', message);
         console.log('message.id: ', message.id);
-        console.log('message.channelId', message.channelId);
+        console.log('message.channelId: ', message.channelId);
         
         const messageSnowflake = message.id; 
         const channelSnowflake = message.channelId;
@@ -63,5 +52,6 @@ module.exports = {
         catch (error) {
             console.log('ERROR: ', error);
         }
+        */
 	},
 };

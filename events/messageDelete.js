@@ -2,6 +2,7 @@ module.exports = {
 	name: 'messageDelete', 
     async execute(GetAuditlogChannel, message) {
         console.log('----- MESSAGE DELETE -----');
+        // For some reason the bot thinks all messages are outside of guild. what.
         if (!message.guild) return;
         console.log('ignored direct messages');
 
@@ -15,7 +16,26 @@ module.exports = {
         console.log('collect first entry of messageDelete');
 		GetAuditlogChannel().send('I can write from messageDelete.js');
 
-        if (!deletionLog) return console.log('A message was deleted, but no relevant audit logs were found.');
+        if (!deletionLog) {
+            try {
+                GetAuditlogChannel().send(`A message was deleted by ${deletionLog.executor.id} but no auditlogs were found.`);
+            } 
+            catch (error) {
+                console.log('ERROR: ', error);
+            }
+        }
+        else {
+            try {
+                GetAuditlogChannel().send(`${deletionLog.executor.id} deleted a message in <#${deletionLog.extra.channel.id}> that was sent at <t:${CalculateTime(message.createdTimestamp)}>`);
+            }
+            catch (error) {
+                console.log('ERROR: ', error);
+            }
+        } 
+        
+        function CalculateTime(unixTime) {
+            return (unixTime / 1000).toFixed(0);
+        }
         
 
         if (deletionLog) { 
