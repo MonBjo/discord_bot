@@ -1,6 +1,6 @@
 # a discord bot
 
-*For my small server with friends to play minecraft.*
+*For my small server with friends to play games.*
 
 It's around christmas 2021 and I came up with a genius idea about this bot project. 
 
@@ -17,11 +17,12 @@ Since we will start learning JavaScript after new year, I will note what I learn
     - [ ] Updated messages
     - [ ] A user leaves the server
 - [ ] Some small game maybe?
-- [ ] Search the minecraft wiki (maybe it would be possible to search the wiki from the game?) 
+- [ ] Search a wiki (maybe it would be possible to search the wiki from the game?) 
 - [ ] Reaction / command roles for members to assign to themself
     - [ ] Prononuns
     - [ ] Open to DMs / Ask before DMs / No DMs
     - [ ] Languages they speak
+    - [ ] Type of gamer Chill / Builder / Collector / Acevement hunter / Fighter / Explorer / AFKer / Digger
 
 ## Things I've learned so far in school and how I apply it in my code
 
@@ -52,3 +53,14 @@ I've been slightly familiar with most of the things, but I've learned many new w
 ### Week 4
 *January 31*
 
+### Week 5
+*Februari 7*
+
+### Week 6
+*Februari 14*
+
+### Week 7
+*Februari 21*
+
+### Week 8
+*Februari 28*
