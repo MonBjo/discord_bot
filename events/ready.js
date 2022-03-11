@@ -2,11 +2,11 @@ module.exports = {
 	name: 'ready',
 	once: true,
 	execute(GetAuditlogChannel, client) {
-		// set activity type to WATCHING, LISTENING or COMPETING
+		// set activity type to PLAYING, STREAMING, WATCHING, LISTENING or COMPETING
 		// set status to online, idle, dnd or invisible
-		const activityType = 'WATCHING';
+		const activityType = 'PLAYING';
 		const status = 'online';
-		const activity = 'villagers'; 
+		const activity = 'with mathematics and algorithms'; 
 
 		client.user.setActivity(activity, { type: activityType });
 		client.user.setStatus(status);

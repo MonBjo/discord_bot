@@ -19,16 +19,13 @@ module.exports = {
         if (!deletionLog) {
             try {
                 GetAuditlogChannel().send(`A message was deleted by ${deletionLog.executor.id} but no auditlogs were found.`);
-            } 
-            catch (error) {
+            } catch (error) {
                 console.log('ERROR: ', error);
             }
-        }
-        else {
+        } else {
             try {
                 GetAuditlogChannel().send(`${deletionLog.executor.id} deleted a message in <#${deletionLog.extra.channel.id}> that was sent at <t:${CalculateTime(message.createdTimestamp)}>`);
-            }
-            catch (error) {
+            } catch (error) {
                 console.log('ERROR: ', error);
             }
         } 

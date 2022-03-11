@@ -19,7 +19,8 @@ function fetchedMessage(channelSnowflake, messageSnowflake) {
 	return fetchedMsg.author;
 }
 
-/* client.on('debug', console.log);
+/* << Keeping for debug >> 
+client.on('debug', console.log);
 client.once('ready', () => {
 	console.log(logTime() + 'Ready!');
 	client.user.setActivity('villagers', { type: 'WATCHING' });
@@ -33,6 +34,7 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.data.name, command);
+	console.log('Loading command /' + file.slice(0, -3));
 }
 
 client.on('interactionCreate', async interaction => {
@@ -49,11 +51,13 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
+
 // Read and execute event-files
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
 	const event = require(`./events/${file}`);
+
 	if (event.once) {
 		client.once(event.name, (...args) => {
 			event.execute(GetAuditlogChannel, ...args);
@@ -63,7 +67,10 @@ for (const file of eventFiles) {
 			event.execute(GetAuditlogChannel, fetchedMessage, ...args);
 		});
 	}
+
+	console.log('Loading eventlistener ' + file.slice(0, -3));
 }
+
 
 // heartbeat every 5 minutes
 setInterval(function() {
@@ -72,11 +79,21 @@ setInterval(function() {
 
 function logTime() {
 	const time = new Date();
-	const hours = (time.getHours() < 10 ? '0' : '') + time.getHours();
-	const minutes = (time.getMinutes() < 10 ? '0' : '') + time.getMinutes();
-	const seconds = (time.getSeconds() < 10 ? '0' : '') + time.getSeconds();
-	
+	const hours = setHours(time);
+	const minutes = setMinutes(time);
+	const seconds = setSeconds(time);
 	return `${hours}:${minutes}:${seconds}`;
 }
+
+function setHours(time) {
+	return (time.getHours() < 10 ? '0' : '') + time.getHours();
+}
+function setMinutes(time) {
+	return (time.getMinutes() < 10 ? '0' : '') + time.getMinutes();
+}
+function setSeconds(time) {
+	return (time.getSeconds() < 10 ? '0' : '') + time.getSeconds();
+}
+
 
 client.login(token);
