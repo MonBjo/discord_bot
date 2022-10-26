@@ -1,0 +1,23 @@
+{
+  "name": "discord_bot",
+  "version": "1.0.0",
+  "description": "Just trying to create a discord bot",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MonBjo/discord_bot.git"
+  },
+  "author": "MonBjo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MonBjo/discord_bot/issues"
+  },
+  "homepage": "https://github.com/MonBjo/discord_bot#readme",
+  "dependencies": {
+    "discord.js": "^14.6.0"
+  }
+}
