@@ -1,15 +1,35 @@
-// Require the necessary discord.js classes
-import { Client, Events, GatewayIntentBits } from 'discord.js';
-import config from './config.json';
+import { readdirSync } from 'node:fs'; // Reads command files
+import { join } from 'node:path'; // Creates paths between files
+import { Client, Collection, GatewayIntentBits } from 'discord.js';
 
-// Create a new client instance
+
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+client.commands = new Collection(); 
 
-// When the client is ready, run this code (only once)
-// We use 'c' for the event parameter to keep it separate from the already defined 'client'
-client.once(Events.ClientReady, c => {
-	console.log(`Ready! Logged in as ${c.user.tag}`);
-});
+const commandsPath = 'commands';
+const commandFiles = readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+	const filePath = join(commandsPath, file);
+	const command = require(filePath);
 
-// Log in to Discord with your client's token
+	if ('data' in command && 'execute' in command) {
+		client.commands.set(command.data.name, command);
+	} else {
+		console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+	}
+}
+
+
+const eventsPath = 'events';
+const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+for (const file of eventFiles) {
+	const filePath = join(eventsPath, file);
+	const event = require(filePath);
+	if (event.once) {
+		client.once(event.name, (...args) => event.execute(...args));
+	} else {
+		client.on(event.name, (...args) => event.execute(...args));
+	}
+}
+
 client.login(config.token);
