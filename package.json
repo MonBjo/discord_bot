@@ -2,10 +2,11 @@
   "name": "discord_bot",
   "version": "1.0.0",
   "description": "Just trying to create a discord bot",
-  "main": "index.js",
+  "main": "index.cjs",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bot": "node deploy-commands.cjs && node index.cjs"
   },
   "repository": {
     "type": "git",
