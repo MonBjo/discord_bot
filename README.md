@@ -8,3 +8,4 @@ So here I am.
 **Links & notes to myself:**
 
 [/command-builder](https://discord.js.org/#/docs/builders/main/class/SlashCommandBuilder)
+[Client](https://discord.js.org/#/docs/main/main/class/Client)
