@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MonBjo/discord_bot#readme",
   "dependencies": {
-    "discord.js": "^14.6.0"
+    "discord.js": "^14.6.0",
+    "time-stamp": "^2.2.0"
   }
 }
